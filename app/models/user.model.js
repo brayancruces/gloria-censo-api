@@ -40,4 +40,27 @@ User.getAll = result => {
     });
   };
   
+  /*User.updateByDni = (dni, user, result) => {
+    sql.query(
+      "UPDATE export_gloria_db SET lugar_nac = ?, estado_civil = ?, active = ? WHERE dni = ?",
+      [user.email, user.name, user.active, dni],
+      (err, res) => {
+        if (err) {
+          console.log("error: ", err);
+          result(null, err);
+          return;
+        }
+  
+        if (res.affectedRows == 0) {
+          // not found Customer with the id
+          result({ kind: "not_found" }, null);
+          return;
+        }
+  
+        console.log("updated customer: ", { id: id, ...customer });
+        result(null, { id: id, ...customer });
+      }
+    );
+  };*/
+
   module.exports = User;

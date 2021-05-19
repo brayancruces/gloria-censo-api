@@ -7,5 +7,9 @@ module.exports = app => {
   
     // Retrieve a single Users
     app.get("/users/:dni", users.findOne);
+
+
+    // Retrieve a single Users
+    app.post("/users/:dni", users.saveOne);
   
 };
