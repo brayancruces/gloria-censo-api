@@ -1,15 +1,49 @@
 module.exports = app => {
     const users = require("../controllers/user.controller.js");
+    const verifyToken = require('../helpers/validate-token');
+
   
     
-    // Retrieve all Users
-    app.get("/users", users.findAll);
-  
-    // Retrieve a single Users
-    app.get("/users/:dni", users.findOne);
+    /***    
+     * 
+     * Autenticación
+     * 
+     * */
+
+    // Loguear
+    app.post("/login", users.login);
 
 
-    // Retrieve a single Users
-    app.post("/users/:dni", users.saveOne);
+    /***    
+     * 
+     * Usuarios
+     * 
+     * */
+
+    // Obtener información de Censado
+    app.get("/users", verifyToken, users.findOne);
+
+    // Actualizar información de Censado
+    app.post("/users", verifyToken, users.saveOne); 
+
+
+
+
+    /***    
+     * 
+     * Listados (no autenticados)
+     * 
+     * */
+
+    // Listado de Enfermedades (nuevo)
+
+    //app.get("/data/enfermedades", verifyToken, list.getEnfermedades);
+
+
+    // Listado de detalle de Enfermedades (nuevo)
+
+    //app.get("/data/enfermedades/detalle", verifyToken, list.getDetalleEnfermedades);
+
+
   
 };
