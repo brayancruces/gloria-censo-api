@@ -49,6 +49,25 @@ User.findByDni = (dni, result) => {
       result({ kind: "not_found" }, null);
     });
   };
+
+  User.findByCodeAndEmail = (email, code, result) => {
+    sql.query(`SELECT * FROM ${tableName} WHERE dni = ${email} AND temp_code = ${code}`, (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+  
+      if (res.length) {
+        console.log("found user: ", res[0]);
+        result(null, res[0]);
+        return;
+      }
+  
+      // not found Customer with the id
+      result({ kind: "not_found" }, null);
+    });
+  };
   
 User.getAll = result => {
     sql.query("SELECT * FROM ${tableName}", (err, res) => {

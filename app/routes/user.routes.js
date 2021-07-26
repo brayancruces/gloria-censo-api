@@ -11,7 +11,11 @@ module.exports = app => {
      * */
 
     // Loguear
-    app.post("/login", users.login);
+    app.post("/login", users.login); 
+
+    // Crear contraseña 
+
+    app.post("/create-password", users.createPassword)
 
 
     /***    
