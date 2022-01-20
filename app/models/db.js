@@ -1,15 +1,14 @@
-const mysql = require("mysql");
+const sql = require("mysql");
 const dbConfig = require("../config/db.config.js");
 
 // Create a connection to the database
-const connection = mysql.createConnection({
-  host: dbConfig.HOST,
-  user: dbConfig.USER,
-  password: dbConfig.PASSWORD,
-  database: dbConfig.DB
+const connection = sql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: 'pepeguinea33',
+  database: 'censolaboral'
 });
 
-// open the MySQL connection
 connection.connect(error => {
   if (error) throw error;
   console.log("Se ha conectado correctamente a la base de datos.");

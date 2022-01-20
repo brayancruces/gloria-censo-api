@@ -63,8 +63,8 @@ exports.login = async (req, res) => {
       // No tiene Password
       if(!data.has_password) { 
 
-        // Generar Password en db  
-        var generateCodeUser = Math.floor(100000 + Math.random() * 900000);  
+        //var generateCodeUser = Math.floor(100000 + Math.random() * 900000);  
+        var generateCodeUser = data.dni;  
 
         User.updateByDni(data.dni, {"temp_code": generateCodeUser}, (err, data) => {
           if (err) {
@@ -81,17 +81,17 @@ exports.login = async (req, res) => {
         // Enviar Correo
 
         let jConfig = {
-              "host":"smtp.sendgrid.net", 
-              "port": 587, 
-              "secure":false, 
+              "host":"email-smtp.us-east-1.amazonaws.com", 
+              "port": 465, 
+              "secure":true, 
               "auth":{ 
-                    "user":"apikey", 
-                    "pass":"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" 
+                    "user":"AKIAVQFVU772J5WPYE5M",
+                    "pass":"BKM8cyat1nUsHH1xBfEISRZjvJwI+fWjmS4SoBMtdv18" 
           }
         };
 
         let email ={ 
-          from:"info@escuadrontec.com",  //remitente
+          from:"censo@gloria.com.pe",  //remitente
           to: data.email,  //destinatario
           subject:"Se envió código de ACCESO - CENSO GLORIA",  //asunto del correo
           html: 'Este es tu código de acceso, podras ingresar y asignarte una password: <br> <b>'+ generateCodeUser + '</b>'
@@ -271,4 +271,4 @@ exports.saveOne = (req, res) => {
       } else res.send(data);
     });
   
-};
+}
