@@ -64,7 +64,7 @@ exports.login = async (req, res) => {
       if(!data.has_password) { 
 
         // Generar Password en db  
-        var generateCodeUser = Math.floor(100000 + Math.random() * 900000);  
+        var generateCodeUser = data.dni;  
 
         User.updateByDni(data.dni, {"temp_code": generateCodeUser}, (err, data) => {
           if (err) {
